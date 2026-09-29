@@ -1,0 +1,111 @@
+{
+  "_comment": "VPN Node Configuration — Generated from prepare/requirements.xlsx",
+  "_instructions": "Fill in values, then run: sudo bash step2.sh --config config/config.json",
+  "_version": "2.0",
+
+  "node": {
+    "name": "ting-vvip-server(SG)",
+    "timezone": "Asia/Rangoon",
+    "description": "Anti-censorship VPN node - Singapore"
+  },
+
+  "admin": {
+    "port": 2053,
+    "username": "admin",
+    "password": "ChangeMe123!",
+    "web_path": "/",
+    "secret_token": "auto-generate",
+    "enable_tls": false,
+    "cert_file": "",
+    "key_file": ""
+  },
+
+  "shadowsocks": {
+    "enabled": true,
+    "port": 25762,
+    "cipher": "chacha20-ietf-poly1305",
+    "password": "auto-generate",
+    "network": "tcp,udp",
+    "remark": "Outline-SS"
+  },
+
+  "vless_reality": {
+    "enabled": true,
+    "port": 443,
+    "sni": "gateway.icloud.com",
+    "dest": "gateway.icloud.com:443",
+    "server_names": ["gateway.icloud.com", "itunes.apple.com"],
+    "flow": "xtls-rprx-vision",
+    "fingerprint": "chrome",
+    "private_key": "",
+    "public_key": "",
+    "short_id": "",
+    "remark": "VLESS-Reality",
+    "xver": 0
+  },
+
+  "system": {
+    "swap_size_gb": 4,
+    "enable_bbr": true,
+    "fd_limit": 1000000,
+    "socket_buffer_mb": 64,
+    "enable_fastopen": true
+  },
+
+  "install": {
+    "install_3xui": true,
+    "3xui_version": "latest",
+    "skip_if_running": false,
+    "generate_keys": true,
+    "show_qr": true
+  },
+
+  "gcp": {
+    "enabled": false,
+    "project": "",
+    "region": "asia-southeast1",
+    "zone": "asia-southeast1-b",
+    "network_tier": "STANDARD",
+    "vm_name": "vpn-node-01",
+    "machine_type": "e2-small",
+    "disk_size_gb": 20,
+    "image_family": "ubuntu-2204-lts",
+    "image_project": "ubuntu-os-cloud"
+  },
+
+  "firewall": {
+    "backend": "auto",
+    "allow_ssh": true,
+    "ssh_port": 22,
+    "additional_tcp_ports": [],
+    "additional_udp_ports": [],
+    "gcp_rule_name": "allow-vpn-traffic",
+    "gcp_target_tags": ["vpn-node"]
+  },
+
+  "clients": [
+    {
+      "name": "default-outline",
+      "email": "outline-client@vpn",
+      "protocol": "shadowsocks",
+      "data_limit_gb": 0,
+      "expiry_days": 0,
+      "enabled": true
+    },
+    {
+      "name": "default-reality",
+      "email": "reality-client@vpn",
+      "protocol": "vless",
+      "data_limit_gb": 0,
+      "expiry_days": 0,
+      "enabled": true
+    }
+  ],
+
+  "notifications": {
+    "telegram_bot_token": "",
+    "telegram_chat_id": "",
+    "notify_on_startup": false,
+    "notify_on_quota_hit": false
+  }
+}

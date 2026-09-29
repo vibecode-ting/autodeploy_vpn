@@ -1,0 +1,93 @@
+{
+  "shadowsocks_inbound_template": {
+    "up": 0,
+    "down": 0,
+    "total": 0,
+    "remark": "Outline-SS",
+    "enable": true,
+    "listen": "",
+    "port": 25762,
+    "protocol": "shadowsocks",
+    "settings": {
+      "method": "chacha20-ietf-poly1305",
+      "password": "PLACEHOLDER_SS_PASSWORD",
+      "network": "tcp,udp",
+      "clients": [
+        {
+          "method": "chacha20-ietf-poly1305",
+          "password": "PLACEHOLDER_SS_PASSWORD",
+          "email": "outline-client@vpn"
+        }
+      ]
+    },
+    "streamSettings": {
+      "network": "tcp"
+    },
+    "sniffing": {
+      "enabled": false,
+      "destOverride": []
+    },
+    "clientStats": null
+  },
+  "vless_reality_inbound_template": {
+    "up": 0,
+    "down": 0,
+    "total": 0,
+    "remark": "VLESS-Reality",
+    "enable": true,
+    "listen": "",
+    "port": 443,
+    "protocol": "vless",
+    "settings": {
+      "clients": [
+        {
+          "id": "PLACEHOLDER_UUID",
+          "flow": "xtls-rprx-vision",
+          "email": "reality-client@vpn",
+          "limitIp": 0,
+          "totalGB": 0,
+          "expiryTime": 0,
+          "enable": true,
+          "tgId": "",
+          "subId": ""
+        }
+      ],
+      "decryption": "none",
+      "fallbacks": []
+    },
+    "streamSettings": {
+      "network": "tcp",
+      "security": "reality",
+      "realitySettings": {
+        "show": false,
+        "dest": "gateway.icloud.com:443",
+        "xver": 0,
+        "serverNames": [
+          "gateway.icloud.com",
+          "itunes.apple.com"
+        ],
+        "privateKey": "PLACEHOLDER_PRIVATE_KEY",
+        "shortIds": [
+          "",
+          "PLACEHOLDER_SHORT_ID"
+        ]
+      },
+      "tcpSettings": {
+        "acceptProxyProtocol": false,
+        "header": {
+          "type": "none"
+        }
+      }
+    },
+    "sniffing": {
+      "enabled": true,
+      "destOverride": [
+        "http",
+        "tls",
+        "quic",
+        "fakedns"
+      ]
+    },
+    "clientStats": null
+  }
+}
